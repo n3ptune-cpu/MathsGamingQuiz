@@ -7,24 +7,44 @@
     android:layout_height="match_parent"
     tools:context=".Final">
 
+    <!-- Background -->
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:scaleType="fitXY"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/bg4"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bg4" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Final Score Title -->
     <TextView
         android:id="@+id/txtFinalScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-600dp"
-        android:layout_marginEnd="152dp"
         android:fontFamily="sans-serif-condensed"
         android:text="Final Score"
+        android:textColor="#25B11F"
         android:textSize="34sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        android:layout_marginTop="200dp" />
+
+    <!-- Congrats Text -->
+    <TextView
+        android:id="@+id/txtFinal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Congrats!"
+        android:textColor="#25B11F"
+        android:textSize="34sp"
+        app:layout_constraintTop_toBottomOf="@id/txtFinalScore"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

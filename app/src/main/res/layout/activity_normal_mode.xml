@@ -7,115 +7,118 @@
     android:layout_height="match_parent"
     tools:context=".NormalMode">
 
+    <!-- Fullscreen Background -->
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:scaleType="fitXY"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/app_name"
+        app:srcCompat="@drawable/bg2"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bg2" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Normal Mode Title -->
+
+    <!-- Question Number -->
 
     <TextView
         android:id="@+id/txtNormal1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-620dp"
-        android:layout_marginEnd="112dp"
-        android:clickable="false"
+        android:layout_marginTop="80dp"
         android:fontFamily="sans-serif-condensed"
         android:text="Normal Mode"
         android:textColor="#FFEB3B"
-        android:textColorHint="#805858"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
-
-    <TextView
-        android:id="@+id/txtQuestion2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-450dp"
-        android:layout_marginEnd="144dp"
-        android:clickable="false"
-        android:fontFamily="sans-serif-condensed"
-        android:text="Question"
-        android:textColor="#1D211C"
-        android:textColorHint="#805858"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
-
-    <TextView
-        android:id="@+id/txtTimer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-390dp"
-        android:layout_marginEnd="176dp"
-        android:clickable="false"
-        android:fontFamily="sans-serif-condensed"
-        android:text="Timer"
-        android:textColor="#1D211C"
-        android:textColorHint="#805858"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtQN2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-500dp"
-        android:layout_marginEnd="144dp"
-        android:clickable="false"
-        android:fontFamily="sans-serif-condensed"
         android:text="Question: 1/10"
         android:textColor="#FFFFFF"
-        android:textColorHint="#805858"
         android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/txtNormal1"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        android:layout_marginTop="16dp" />
 
+    <!-- Score -->
     <TextView
         android:id="@+id/txtScore2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-550dp"
-        android:layout_marginEnd="172dp"
-        android:clickable="false"
-        android:fontFamily="sans-serif-condensed"
         android:text="Score: 0"
         android:textColor="#FFFFFF"
-        android:textColorHint="#805858"
         android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/txtQN2"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        android:layout_marginTop="8dp" />
 
-    <EditText
-        android:id="@+id/etAns2"
+    <!-- Timer -->
+    <TextView
+        android:id="@+id/txtTimer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-350dp"
-        android:layout_marginEnd="88dp"
-        android:ems="10"
+        android:text="Timer"
+        android:textColor="#1D211C"
+        android:textSize="24sp"
+        android:fontFamily="sans-serif-condensed"
+        app:layout_constraintTop_toBottomOf="@id/txtScore2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <!-- Question Text -->
+    <TextView
+        android:id="@+id/txtQuestion2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Question"
+        android:textColor="#1D211C"
+        android:textSize="34sp"
+        android:fontFamily="sans-serif-condensed"
+        app:layout_constraintTop_toBottomOf="@id/txtTimer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp" />
+
+    <!-- Answer Input -->
+    <EditText
+        android:id="@+id/etAns2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Answer here"
         android:inputType="number"
+        android:textAlignment="center"
         android:textColor="#FB5622"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toBottomOf="@id/txtQuestion2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Submit Button -->
     <Button
         android:id="@+id/btnSubmit2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="-310dp"
-        android:fontFamily="sans-serif-condensed"
         android:text="Submit Answer"
-        android:textColorHint="#872626"
-        android:textColorLink="#B85050"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/etAns2" />
+        android:fontFamily="sans-serif-condensed"
+        app:layout_constraintTop_toBottomOf="@id/etAns2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
