@@ -12,59 +12,62 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class EasyMode extends AppCompatActivity {
 
-    TextView txtQN, txtScore, txtQuestion;
-    EditText etAns;
-    Button btnSubmit;
-    int score, questionNumber;
+    private TextView txtQN, txtScore, txtQuestion;
+    private EditText etAns;
+    private Button btnSubmit;
 
-    String question;
-    int answer;
+    private int score, questionNumber;
+    private String question;
+    private int answer;
 
-    MediaPlayer mPlayer1, mPlayer2;
+    private MediaPlayer mPlayer1, mPlayer2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {
-            this.getSupportActionBar().hide();
-        } catch (NullPointerException e) {}
+            getSupportActionBar().hide();
+        } catch (NullPointerException ignored) {}
 
         setContentView(R.layout.activity_easy_mode);
 
-        txtQN = findViewById(R.id.txtQN);
-        txtQuestion = findViewById(R.id.txtQuestion);
-        txtScore = findViewById(R.id.txtScore);
-        etAns = findViewById(R.id.etAns);
-        btnSubmit = findViewById(R.id.btnSubmit);
+        // UI setup
+        txtQN      = findViewById(R.id.txtQN);
+        txtQuestion= findViewById(R.id.txtQuestion);
+        txtScore   = findViewById(R.id.txtScore);
+        etAns      = findViewById(R.id.etAns);
+        btnSubmit  = findViewById(R.id.btnSubmit);
 
+        // Load sounds
         mPlayer1 = MediaPlayer.create(this, R.raw.correct);
         mPlayer2 = MediaPlayer.create(this, R.raw.wrong);
 
-        questionNumber = 1;
+        // Start game
         score = 0;
+        questionNumber = 1;
 
         setQuestion();
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String input = etAns.getText().toString().trim();
                 checkAnswer();
-
                 questionNumber++;
+
                 if (questionNumber <= 10) {
                     setQuestion();
                 } else {
                     Intent intent = new Intent(getApplicationContext(), Final.class);
                     intent.putExtra("score", Integer.toString(score));
                     startActivity(intent);
+                    finish();
                 }
             }
         });
     }
 
     private int getRandomNumber(int min, int max) {
-        return (int) ((Math.random() * (max - min)) + min);
+        return (int) ((Math.random() * (max - min + 1)) + min);
     }
 
     private void setQuestion() {
@@ -73,15 +76,22 @@ public class EasyMode extends AppCompatActivity {
 
         generateRandomQuestion();
         txtQuestion.setText(question);
+        etAns.setText(""); // Clear input for next question
     }
 
     private void checkAnswer() {
+        String input = etAns.getText().toString().trim();
+
+        if (input.isEmpty()) {
+            mPlayer2.start();
+            return;
+        }
+
         int attempt;
         try {
-            attempt = Integer.parseInt(etAns.getText().toString().trim());
+            attempt = Integer.parseInt(input);
         } catch (NumberFormatException e) {
             mPlayer2.start();
-            etAns.setText("");
             return;
         }
 
@@ -92,14 +102,12 @@ public class EasyMode extends AppCompatActivity {
             mPlayer2.start();
         }
 
-        etAns.setText("");
         txtScore.setText("Score: " + score);
     }
 
     private void generateRandomQuestion() {
-        int num1 = getRandomNumber(1, 20);
-        int num2 = getRandomNumber(1, 20);
-
+        int num1 = getRandomNumber(1, 12);
+        int num2 = getRandomNumber(1, 12);
         boolean isAddition = Math.random() < 0.5;
 
         if (isAddition) {
@@ -111,5 +119,12 @@ public class EasyMode extends AppCompatActivity {
             question = max + " - " + min + " = ?";
             answer = max - min;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mPlayer1 != null) mPlayer1.release();
+        if (mPlayer2 != null) mPlayer2.release();
     }
 }

@@ -38,13 +38,14 @@
         android:id="@+id/txtFinal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-condensed"
         android:text="Congrats!"
+        android:textAlignment="center"
         android:textColor="#25B11F"
-        android:textSize="34sp"
-        app:layout_constraintTop_toBottomOf="@id/txtFinalScore"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtFinalScore" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
